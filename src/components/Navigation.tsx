@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
 const navLinks = [
+  { label: 'Programs', href: '#pillars' },
+  { label: 'Courses', href: '#programs' },
+  { label: 'Events', href: '#events' },
+  { label: 'Podcast', href: '#podcast' },
   { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -26,14 +30,12 @@ const Navigation = () => {
       }`}
     >
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="text-xl font-semibold text-foreground hover:text-primary transition-colors">
-          <span className="text-primary">&lt;</span>
-          dev
-          <span className="text-primary">/&gt;</span>
+        <a href="#" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
+          <span className="text-primary">Scale</span>App
         </a>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -45,12 +47,14 @@ const Navigation = () => {
             </li>
           ))}
           <li>
-            <a
+            <motion.a
               href="#contact"
-              className="px-4 py-2 text-sm font-medium border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all"
+              className="px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-all"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
             >
-              Resume
-            </a>
+              Start Learning
+            </motion.a>
           </li>
         </ul>
 
@@ -60,47 +64,44 @@ const Navigation = () => {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            {mobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border md:hidden">
-            <ul className="flex flex-col items-center gap-4 py-6">
-              {navLinks.map((link) => (
-                <li key={link.href}>
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border md:hidden"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ul className="flex flex-col items-center gap-4 py-6">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className="text-base font-medium text-muted-foreground hover:text-primary transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+                <li>
                   <a
-                    href={link.href}
-                    className="text-base font-medium text-muted-foreground hover:text-primary transition-colors"
+                    href="#contact"
+                    className="px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-all"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {link.label}
+                    Start Learning
                   </a>
                 </li>
-              ))}
-              <li>
-                <a
-                  href="#contact"
-                  className="px-4 py-2 text-sm font-medium border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Resume
-                </a>
-              </li>
-            </ul>
-          </div>
-        )}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </header>
   );

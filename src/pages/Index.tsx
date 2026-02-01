@@ -1,9 +1,12 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Skills from '@/components/Skills';
-import Projects from '@/components/Projects';
-import Contact from '@/components/Contact';
+import CorePillars from '@/components/CorePillars';
+import FeaturedPrograms from '@/components/FeaturedPrograms';
+import EventsSummits from '@/components/EventsSummits';
+import Podcast from '@/components/Podcast';
+import BlogResources from '@/components/BlogResources';
+import AboutScaleApp from '@/components/AboutScaleApp';
+import CommunityContact from '@/components/CommunityContact';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -12,10 +15,13 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
+        <CorePillars />
+        <FeaturedPrograms />
+        <EventsSummits />
+        <Podcast />
+        <BlogResources />
+        <AboutScaleApp />
+        <CommunityContact />
       </main>
       <Footer />
     </div>
