@@ -61,7 +61,7 @@ const pillars = [
 
 const CorePillars = () => {
   return (
-    <section id="pillars" className="py-24 px-6 relative">
+    <section id="pillars" className="py-24 px-6 relative bg-secondary/30">
       <div className="absolute inset-0 pattern-grid pointer-events-none opacity-30" />
 
       <motion.div
