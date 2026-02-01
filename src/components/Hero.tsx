@@ -1,7 +1,7 @@
-'use client';
-import { motion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
-import { ArrowRight, BookOpen } from 'lucide-react';
+"use client";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
+import { ArrowRight, BookOpen } from "lucide-react";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -40,31 +40,39 @@ const Hero = () => {
           variants={itemVariants}
         >
           <BookOpen className="w-4 h-4 text-primary" />
-          <span className="text-primary text-sm font-medium">Youth-Focused Education Platform</span>
+          <span className="text-primary text-sm font-medium">
+            Youth-Focused Education Platform
+          </span>
         </motion.div>
 
         <motion.h1
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
           variants={itemVariants}
         >
-          Learn. Grow. Lead.{' '}
+          Learn. Grow. Lead.{" "}
           <span className="text-primary">Build Your Future</span> with ScaleApp.
         </motion.h1>
 
-        <motion.p
+        {/* <motion.p
           className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
           variants={itemVariants}
         >
           ScaleApp is a youth‑focused education and growth platform designed to train, educate, 
           coach, and connect the next generation through digital learning, summits, podcasts, 
           and live training experiences.
-        </motion.p>
+        </motion.p> */}
 
-        <motion.div className="flex flex-wrap justify-center gap-4 mb-12" variants={itemVariants}>
+        <motion.div
+          className="flex flex-wrap justify-center gap-4 mb-12"
+          variants={itemVariants}
+        >
           <motion.a
             href="#programs"
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-medium rounded-lg hover:opacity-90 transition-all glow-accent"
-            whileHover={{ y: -4, boxShadow: '0 10px 40px hsl(187 85% 53% / 0.3)' }}
+            whileHover={{
+              y: -4,
+              boxShadow: "0 10px 40px hsl(187 85% 53% / 0.3)",
+            }}
             whileTap={{ scale: 0.98 }}
           >
             Start Learning
@@ -84,7 +92,8 @@ const Hero = () => {
           className="text-muted-foreground text-sm"
           variants={itemVariants}
         >
-          Trusted by learners, educators, and partners shaping the future of education and skills.
+          Trusted by learners, educators, and partners shaping the future of
+          education and skills.
         </motion.p>
       </motion.div>
     </section>

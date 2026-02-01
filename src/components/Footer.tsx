@@ -1,21 +1,21 @@
-'use client';
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Instagram } from 'lucide-react';
+"use client";
+import { motion } from "framer-motion";
+import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
 
 const footerLinks = [
-  { label: 'Programs', href: '#pillars' },
-  { label: 'Courses', href: '#programs' },
-  { label: 'Events', href: '#events' },
-  { label: 'Podcast', href: '#podcast' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: "Programs", href: "#pillars" },
+  { label: "Courses", href: "#programs" },
+  { label: "Events", href: "#events" },
+  { label: "Podcast", href: "#podcast" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const socials = [
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Github, href: '#', label: 'GitHub' },
+  { icon: Twitter, href: "#", label: "Twitter" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Github, href: "#", label: "GitHub" },
 ];
 
 const Footer = () => {
@@ -23,8 +23,15 @@ const Footer = () => {
     <footer className="py-12 px-6 border-t border-border">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
-          <a href="#" className="text-xl font-bold text-foreground">
-            <span className="text-primary">Scale</span>App
+          <a
+            href="#"
+            className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+          >
+            <img
+              className="w-16 h-16 object-cover"
+              src="/images/scale-app-logo.png"
+              alt=""
+            />
           </a>
 
           <ul className="flex flex-wrap justify-center gap-6">
@@ -57,7 +64,8 @@ const Footer = () => {
 
         <div className="text-center pt-8 border-t border-border">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} ScaleApp. Building the future of learning, growth, and opportunity.
+            © {new Date().getFullYear()} ScaleApp. Building the future of
+            learning, growth, and opportunity.
           </p>
         </div>
       </div>

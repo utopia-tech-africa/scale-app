@@ -1,13 +1,13 @@
-import Navigation from '@/components/Navigation';
-import Hero from '@/components/Hero';
-import CorePillars from '@/components/CorePillars';
-import FeaturedPrograms from '@/components/FeaturedPrograms';
-import EventsSummits from '@/components/EventsSummits';
-import Podcast from '@/components/Podcast';
-import BlogResources from '@/components/BlogResources';
-import AboutScaleApp from '@/components/AboutScaleApp';
-import CommunityContact from '@/components/CommunityContact';
-import Footer from '@/components/Footer';
+import Navigation from "@/components/Navigation";
+import Hero from "@/components/Hero";
+import CorePillars from "@/components/CorePillars";
+import FeaturedPrograms from "@/components/FeaturedPrograms";
+import EventsSummits from "@/components/EventsSummits";
+import Podcast from "@/components/Podcast";
+import BlogResources from "@/components/BlogResources";
+import AboutScaleApp from "@/components/AboutScaleApp";
+import CommunityContact from "@/components/CommunityContact";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -15,12 +15,12 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
+        <AboutScaleApp />
         <CorePillars />
         <FeaturedPrograms />
         <EventsSummits />
         <Podcast />
         <BlogResources />
-        <AboutScaleApp />
         <CommunityContact />
       </main>
       <Footer />

@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: 'Programs', href: '#pillars' },
-  { label: 'Courses', href: '#programs' },
-  { label: 'Events', href: '#events' },
-  { label: 'Podcast', href: '#podcast' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: "Programs", href: "#pillars" },
+  { label: "Courses", href: "#programs" },
+  { label: "Events", href: "#events" },
+  { label: "Podcast", href: "#podcast" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navigation = () => {
@@ -19,19 +19,28 @@ const Navigation = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-background/90 backdrop-blur-md border-b border-border' : 'bg-transparent'
+        scrolled
+          ? "bg-background/90 backdrop-blur-md border-b border-border"
+          : "bg-transparent"
       }`}
     >
-      <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
-          <span className="text-primary">Scale</span>App
+      <nav className="container mx-auto px-6 py-2 flex items-center justify-between">
+        <a
+          href="#"
+          className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+        >
+          <img
+            className="w-16 h-16 object-cover"
+            src="/images/scale-app-logo.png"
+            alt=""
+          />
         </a>
 
         {/* Desktop Navigation */}
@@ -64,7 +73,11 @@ const Navigation = () => {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
 
         {/* Mobile Menu */}
