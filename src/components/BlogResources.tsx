@@ -46,7 +46,7 @@ const resources = [
 
 const BlogResources = () => {
   return (
-    <section id="resources" className="py-24 px-6 relative">
+    <section id="resources" className="py-24 px-6 relative bg-secondary/30">
       <div className="absolute inset-0 pattern-grid pointer-events-none opacity-20" />
 
       <motion.div

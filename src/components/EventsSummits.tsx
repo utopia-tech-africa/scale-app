@@ -22,7 +22,7 @@ const itemVariants: Variants = {
 
 const EventsSummits = () => {
   return (
-    <section id="events" className="py-24 px-6 relative overflow-hidden">
+    <section id="events" className="py-24 px-6 relative overflow-hidden bg-secondary/30">
       <div className="absolute inset-0 pattern-gradient-radial pointer-events-none" />
 
       <motion.div
