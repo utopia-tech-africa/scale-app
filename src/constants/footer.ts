@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Linkedin, Twitter, Instagram } from "lucide-react";
 
 export const footerLinks = [
   { label: "Programs", href: "#pillars" },
