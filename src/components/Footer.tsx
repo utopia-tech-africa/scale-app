@@ -1,22 +1,7 @@
 "use client";
+import { socials } from "@/constants/contact";
+import { footerLinks } from "@/constants/footer";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
-
-const footerLinks = [
-  { label: "Programs", href: "#pillars" },
-  { label: "Courses", href: "#programs" },
-  { label: "Events", href: "#events" },
-  { label: "Podcast", href: "#podcast" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-];
-
-const socials = [
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Github, href: "#", label: "GitHub" },
-];
 
 const Footer = () => {
   return (

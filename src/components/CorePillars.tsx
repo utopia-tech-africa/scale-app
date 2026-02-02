@@ -1,83 +1,26 @@
-'use client';
-import { motion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
-import { GraduationCap, BookOpen, Monitor, Users, Library, Award } from 'lucide-react';
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
-};
-
-const pillars = [
-  {
-    icon: GraduationCap,
-    title: 'Education',
-    subtitle: 'Build Strong Foundations',
-    features: ['Foundational learning', 'Skill development', 'Thought leadership', 'Articles, guides, and insights'],
-  },
-  {
-    icon: BookOpen,
-    title: 'Online Courses',
-    subtitle: 'Learn at Your Own Pace',
-    features: ['Structured digital courses', 'Self‑paced and cohort‑based learning', 'Industry‑relevant curriculum', 'Certificates (coming soon)'],
-  },
-  {
-    icon: Monitor,
-    title: 'Online Education',
-    subtitle: 'Learn From Anywhere',
-    features: ['Virtual workshops', 'Webinars', 'Live and on‑demand learning', 'Remote education experiences'],
-  },
-  {
-    icon: Users,
-    title: 'Coaching',
-    subtitle: 'Learn With Guidance',
-    features: ['Personal and group coaching', 'Mentorship programs', 'Leadership and growth coaching'],
-  },
-  {
-    icon: Library,
-    title: 'Learning Hub',
-    subtitle: 'Keep Growing Continuously',
-    features: ['Curated resources', 'Toolkits and guides', 'Knowledge library'],
-  },
-  {
-    icon: Award,
-    title: 'Training Center',
-    subtitle: 'Train for the Real World',
-    features: ['Physical and virtual training programs', 'Bootcamps', 'Certifications', 'Corporate and institutional training'],
-  },
-];
+"use client";
+import { pillars } from "@/constants/pillars";
+import { containerVariants, itemVariants } from "@/constants/variants";
+import { motion } from "framer-motion";
 
 const CorePillars = () => {
   return (
-    <section id="pillars" className="py-24 px-6 relative bg-secondary/30">
-      <div className="absolute inset-0 pattern-grid pointer-events-none opacity-30" />
-
+    <section id="pillars" className="py-24 px-1 relative">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
       <motion.div
         className="container mx-auto max-w-6xl relative z-10"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
         <motion.div className="text-center mb-16" variants={itemVariants}>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             What We Do at <span className="text-primary">ScaleApp</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Everything we build is designed to help young people learn faster, grow smarter, 
-            and unlock real‑world opportunities.
+          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+            Everything we build is designed to help young people learn faster,
+            grow smarter, and unlock real‑world opportunities.
           </p>
         </motion.div>
 
@@ -88,23 +31,55 @@ const CorePillars = () => {
           {pillars.map((pillar) => (
             <motion.div
               key={pillar.title}
-              className="group p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300"
+              className="group relative p-6 border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 h-full min-h-[340px]"
               variants={itemVariants}
-              whileHover={{ y: -5, boxShadow: '0 10px 40px hsl(187 85% 53% / 0.1)' }}
+              whileHover={{
+                y: -8,
+                scale: 1.02,
+                borderColor: "rgba(var(--primary), 0.3)",
+                boxShadow: "0 20px 60px rgba(var(--primary), 0.15)",
+              }}
             >
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <pillar.icon className="w-6 h-6 text-primary" />
+              <div className="absolute inset-0">
+                <img
+                  src={pillar.image}
+                  alt={pillar.title}
+                  className="object-cover transition-all duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 to-black/60" />
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-1">{pillar.title}</h3>
-              <p className="text-primary text-sm mb-4">{pillar.subtitle}</p>
-              <ul className="space-y-2">
-                {pillar.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2 text-muted-foreground text-sm">
-                    <span className="text-primary mt-1">▹</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
+
+              <div className="relative z-10 h-full flex flex-col">
+                <div className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 border border-white/20">
+                  <pillar.icon className="w-7 h-7 text-white" />
+                </div>
+
+                <div className="flex-grow">
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-primary font-semibold text-sm mb-6">
+                    {pillar.subtitle}
+                  </p>
+                  <ul className="space-y-3">
+                    {pillar.features.map((feature) => (
+                      <motion.li
+                        key={feature}
+                        className="flex items-start gap-3 text-white/90 text-sm"
+                        whileHover={{ x: 5 }}
+                        transition={{ type: "spring", stiffness: 400 }}
+                      >
+                        <span className="text-primary mt-1 flex-shrink-0">
+                          ▶
+                        </span>
+                        <span className="leading-relaxed">{feature}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>

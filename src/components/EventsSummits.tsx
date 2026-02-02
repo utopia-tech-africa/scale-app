@@ -1,35 +1,21 @@
-'use client';
-import { motion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
-import { Calendar, Users, Mic, ArrowRight } from 'lucide-react';
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
-};
+"use client";
+import { containerVariants, itemVariants } from "@/constants/variants";
+import { motion } from "framer-motion";
+import { Calendar, Users, Mic, ArrowRight } from "lucide-react";
 
 const EventsSummits = () => {
   return (
-    <section id="events" className="py-24 px-6 relative overflow-hidden bg-secondary/30">
+    <section
+      id="events"
+      className="py-24 px-1 relative overflow-hidden bg-secondary/30"
+    >
       <div className="absolute inset-0 pattern-gradient-radial pointer-events-none" />
 
       <motion.div
         className="container mx-auto max-w-6xl relative z-10"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
         <motion.div className="text-center mb-16" variants={itemVariants}>
@@ -38,21 +24,19 @@ const EventsSummits = () => {
             Events & Summits That Inspire Growth
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            We host immersive learning experiences that connect ideas, people, and opportunities.
+            We host immersive learning experiences that connect ideas, people,
+            and opportunities.
           </p>
         </motion.div>
 
-        <motion.div
-          className="max-w-3xl mx-auto"
-          variants={itemVariants}
-        >
+        <motion.div className="max-w-3xl mx-auto" variants={itemVariants}>
           <motion.div
             className="relative p-8 bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/30 rounded-2xl overflow-hidden"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            
+
             <div className="relative z-10">
               <div className="flex items-center gap-2 mb-4">
                 <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-mono rounded-full">
@@ -85,7 +69,10 @@ const EventsSummits = () => {
               <motion.a
                 href="#"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:opacity-90 transition-all"
-                whileHover={{ y: -2, boxShadow: '0 10px 40px hsl(187 85% 53% / 0.3)' }}
+                whileHover={{
+                  y: -2,
+                  boxShadow: "0 10px 40px hsl(187 85% 53% / 0.3)",
+                }}
                 whileTap={{ scale: 0.98 }}
               >
                 Save Your Spot

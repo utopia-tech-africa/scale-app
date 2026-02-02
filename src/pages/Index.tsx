@@ -19,7 +19,7 @@ const Index = () => {
         <CorePillars />
         <FeaturedPrograms />
         <EventsSummits />
-        <Podcast />
+        {/* <Podcast /> */}
         <BlogResources />
         <CommunityContact />
       </main>

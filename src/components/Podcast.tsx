@@ -1,59 +1,20 @@
-'use client';
-import { motion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
-import { Headphones, Play, Clock } from 'lucide-react';
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
-};
-
-const episodes = [
-  {
-    episode: '01',
-    title: 'Learning Beyond the Classroom',
-    guest: 'Education Innovator',
-    description: 'Exploring how digital learning is reshaping education for young people.',
-    duration: '45 min',
-  },
-  {
-    episode: '02',
-    title: 'Building Skills for Tomorrow',
-    guest: 'Tech Industry Leader',
-    description: 'What skills young professionals need to thrive in the modern workforce.',
-    duration: '38 min',
-  },
-  {
-    episode: '03',
-    title: 'The Power of Mentorship',
-    guest: 'Startup Founder',
-    description: 'How mentorship can accelerate personal and professional growth.',
-    duration: '42 min',
-  },
-];
+"use client";
+import { episodes } from "@/constants/episodes";
+import { containerVariants, itemVariants } from "@/constants/variants";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
+import { Headphones, Play, Clock } from "lucide-react";
 
 const Podcast = () => {
   return (
-    <section id="podcast" className="py-24 px-6 relative">
+    <section id="podcast" className="py-24 px-1 relative">
       <div className="absolute inset-0 pattern-dots pointer-events-none opacity-30" />
 
       <motion.div
         className="container mx-auto max-w-6xl relative z-10"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
         <motion.div className="text-center mb-16" variants={itemVariants}>
@@ -65,7 +26,8 @@ const Podcast = () => {
             ScaleApp Podcast
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Conversations with educators, founders, creatives, and leaders shaping the future of learning and work.
+            Conversations with educators, founders, creatives, and leaders
+            shaping the future of learning and work.
           </p>
         </motion.div>
 
@@ -81,15 +43,21 @@ const Podcast = () => {
               whileHover={{ y: -5 }}
             >
               <div className="flex items-center justify-between mb-4">
-                <span className="text-primary font-mono text-sm">Episode {episode.episode}</span>
+                <span className="text-primary font-mono text-sm">
+                  Episode {episode.episode}
+                </span>
                 <div className="flex items-center gap-1 text-muted-foreground text-xs">
                   <Clock className="w-3 h-3" />
                   {episode.duration}
                 </div>
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">{episode.title}</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                {episode.title}
+              </h3>
               <p className="text-primary text-sm mb-3">with {episode.guest}</p>
-              <p className="text-muted-foreground text-sm mb-4">{episode.description}</p>
+              <p className="text-muted-foreground text-sm mb-4">
+                {episode.description}
+              </p>
               <motion.a
                 href="#"
                 className="inline-flex items-center gap-2 text-primary font-medium text-sm"

@@ -1,15 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-
-const navLinks = [
-  { label: "Programs", href: "#pillars" },
-  { label: "Courses", href: "#programs" },
-  { label: "Events", href: "#events" },
-  { label: "Podcast", href: "#podcast" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-];
+import { navLinks } from "@/constants/navLinks";
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);

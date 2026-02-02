@@ -26,40 +26,58 @@ const itemVariants: Variants = {
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
-      <div className="absolute inset-0 pattern-gradient-radial pointer-events-none" />
-      <div className="absolute inset-0 pattern-dots pointer-events-none opacity-50" />
+      {/* Hero Background Image with Gradient Overlay */}
+      <div className="absolute inset-0">
+        <img
+          src="/images/hero.jpg"
+          alt="Hero background"
+          className="object-cover"
+          sizes="100vw"
+          style={{
+            objectPosition: "center center",
+          }}
+        />
+        {/* Gradient Overlay for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-transparent" />
+      </div>
 
       <motion.div
-        className="container mx-auto max-w-5xl text-center relative z-10"
+        className="container mx-auto max-w-5xl text-center relative z-10 px-4 sm:px-6"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.div
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full mb-8"
           variants={itemVariants}
+          whileHover={{ scale: 1.05 }}
         >
           <BookOpen className="w-4 h-4 text-primary" />
-          <span className="text-primary text-sm font-medium">
+          <span className="text-primary text-sm font-semibold">
             Youth-Focused Education Platform
           </span>
         </motion.div>
 
         <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
           variants={itemVariants}
         >
-          Learn. Grow. Lead.{" "}
-          <span className="text-primary">Build Your Future</span> with ScaleApp.
+          Learn. Grow. Lead.
+          <br />
+          <span className="text-primary drop-shadow-lg">
+            Build Your Future
+          </span>{" "}
+          with ScaleApp
         </motion.h1>
 
         {/* <motion.p
-          className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
+          className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
           variants={itemVariants}
         >
-          ScaleApp is a youth‑focused education and growth platform designed to train, educate, 
-          coach, and connect the next generation through digital learning, summits, podcasts, 
-          and live training experiences.
+          ScaleApp is a youth‑focused education and growth platform designed to
+          train, educate, coach, and connect the next generation through digital
+          learning, summits, podcasts, and live training experiences.
         </motion.p> */}
 
         <motion.div
@@ -68,10 +86,11 @@ const Hero = () => {
         >
           <motion.a
             href="#programs"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-medium rounded-lg hover:opacity-90 transition-all glow-accent"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/30"
             whileHover={{
               y: -4,
-              boxShadow: "0 10px 40px hsl(187 85% 53% / 0.3)",
+              scale: 1.05,
+              boxShadow: "0 10px 40px hsl(187 85% 53% / 0.4)",
             }}
             whileTap={{ scale: 0.98 }}
           >
@@ -80,21 +99,28 @@ const Hero = () => {
           </motion.a>
           <motion.a
             href="#pillars"
-            className="px-8 py-4 border border-primary text-primary font-medium rounded-lg hover:bg-primary/10 transition-all"
-            whileHover={{ y: -4 }}
+            className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-all backdrop-blur-sm bg-white/5"
+            whileHover={{
+              y: -4,
+              scale: 1.05,
+              backgroundColor: "rgba(255, 255, 255, 0.15)",
+            }}
             whileTap={{ scale: 0.98 }}
           >
             Explore Programs
           </motion.a>
         </motion.div>
 
-        <motion.p
-          className="text-muted-foreground text-sm"
+        {/* <motion.div
+          className="text-white/80 text-sm backdrop-blur-sm bg-black/20 rounded-lg p-4 max-w-md mx-auto"
           variants={itemVariants}
         >
-          Trusted by learners, educators, and partners shaping the future of
-          education and skills.
-        </motion.p>
+          <p>
+            Trusted by{" "}
+            <span className="font-semibold text-white">10,000+ learners</span>,
+            educators, and partners shaping the future of education and skills.
+          </p>
+        </motion.div> */}
       </motion.div>
     </section>
   );

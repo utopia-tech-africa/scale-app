@@ -1,31 +1,8 @@
-'use client';
-import { motion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
-import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
-
-const socials = [
-  { icon: Github, href: '#', label: 'GitHub' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Mail, href: 'mailto:your@email.com', label: 'Email' },
-];
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
-};
+"use client";
+import { socials } from "@/constants/contact";
+import { containerVariants, itemVariants } from "@/constants/variants";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 const Contact = () => {
   return (
@@ -36,10 +13,13 @@ const Contact = () => {
         className="container mx-auto max-w-2xl text-center relative z-10"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
-        <motion.p className="text-primary font-mono text-sm mb-4" variants={itemVariants}>
+        <motion.p
+          className="text-primary font-mono text-sm mb-4"
+          variants={itemVariants}
+        >
           04. What's Next?
         </motion.p>
         <motion.h2
@@ -53,22 +33,28 @@ const Contact = () => {
           variants={itemVariants}
         >
           I'm currently open to new opportunities and always happy to connect.
-          Whether you have a question, a project idea, or just want to say hello,
-          my inbox is always open!
+          Whether you have a question, a project idea, or just want to say
+          hello, my inbox is always open!
         </motion.p>
 
         <motion.a
           href="mailto:your@email.com"
           className="inline-block px-10 py-4 border border-primary text-primary font-medium rounded hover:bg-primary/10 transition-all"
           variants={itemVariants}
-          whileHover={{ y: -4, boxShadow: '0 10px 40px hsl(187 85% 53% / 0.2)' }}
+          whileHover={{
+            y: -4,
+            boxShadow: "0 10px 40px hsl(187 85% 53% / 0.2)",
+          }}
           whileTap={{ scale: 0.98 }}
         >
           Say Hello
         </motion.a>
 
         {/* Social Links */}
-        <motion.div className="mt-16 flex justify-center gap-6" variants={itemVariants}>
+        <motion.div
+          className="mt-16 flex justify-center gap-6"
+          variants={itemVariants}
+        >
           {socials.map((social) => (
             <motion.a
               key={social.label}

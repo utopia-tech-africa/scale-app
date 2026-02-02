@@ -1,45 +1,32 @@
-'use client';
-import { motion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
-import { Mail, Send, MessageCircle } from 'lucide-react';
-import { useState } from 'react';
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
-};
+"use client";
+import { containerVariants, itemVariants } from "@/constants/variants";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
+import { Mail, Send, MessageCircle } from "lucide-react";
+import { useState } from "react";
 
 const CommunityContact = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle newsletter signup
-    console.log('Newsletter signup:', email);
-    setEmail('');
+    console.log("Newsletter signup:", email);
+    setEmail("");
   };
 
   return (
-    <section id="contact" className="py-24 px-6 relative overflow-hidden bg-secondary/30">
+    <section
+      id="contact"
+      className="py-24 px-6 relative overflow-hidden bg-secondary/30"
+    >
       <div className="absolute inset-0 pattern-gradient-radial pointer-events-none" />
 
       <motion.div
         className="container mx-auto max-w-4xl relative z-10"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
         <motion.div className="text-center mb-12" variants={itemVariants}>
@@ -48,23 +35,24 @@ const CommunityContact = () => {
             Join the ScaleApp Community
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Stay connected with new programs, events, courses, and learning opportunities.
+            Stay connected with new programs, events, courses, and learning
+            opportunities.
           </p>
         </motion.div>
 
-        <motion.div
-          className="max-w-xl mx-auto mb-12"
-          variants={itemVariants}
-        >
+        <motion.div className="max-w-xl mx-auto mb-12" variants={itemVariants}>
           <div className="p-8 bg-card border border-border rounded-2xl">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                 <Mail className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground">Newsletter</h3>
+              <h3 className="text-lg font-semibold text-foreground">
+                Newsletter
+              </h3>
             </div>
             <p className="text-muted-foreground mb-6">
-              Get learning resources, event updates, and growth insights delivered to your inbox.
+              Get learning resources, event updates, and growth insights
+              delivered to your inbox.
             </p>
             <form onSubmit={handleSubmit} className="flex gap-3">
               <input
@@ -90,7 +78,8 @@ const CommunityContact = () => {
 
         <motion.div className="text-center" variants={itemVariants}>
           <p className="text-muted-foreground mb-6">
-            Have questions or want to partner with us? We'd love to hear from you.
+            Have questions or want to partner with us? We'd love to hear from
+            you.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <motion.a
