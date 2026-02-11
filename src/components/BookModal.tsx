@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Calendar, Send } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 const bookingReasons = [
   "Speaking Engagement",
@@ -71,7 +71,7 @@ const BookModal = ({ isOpen, onClose }: BookModalProps) => {
     setIsSubmitting(true);
     // Handle form submission here
     console.log("Booking data:", data);
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsSubmitting(false);
     onClose();
     form.reset();
@@ -84,22 +84,24 @@ const BookModal = ({ isOpen, onClose }: BookModalProps) => {
       title="Book a Session with Ghizo"
     >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="firstName"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-white">First Name *</FormLabel>
+                <FormItem className="space-y-2">
+                  <FormLabel className="text-white text-sm font-medium">
+                    First Name <span className="text-primary">*</span>
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="John"
                       {...field}
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-xs text-red-400" />
                 </FormItem>
               )}
             />
@@ -107,16 +109,18 @@ const BookModal = ({ isOpen, onClose }: BookModalProps) => {
               control={form.control}
               name="lastName"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-white">Last Name *</FormLabel>
+                <FormItem className="space-y-2">
+                  <FormLabel className="text-white text-sm font-medium">
+                    Last Name <span className="text-primary">*</span>
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Doe"
                       {...field}
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-xs text-red-400" />
                 </FormItem>
               )}
             />
@@ -126,71 +130,80 @@ const BookModal = ({ isOpen, onClose }: BookModalProps) => {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Email *</FormLabel>
+              <FormItem className="space-y-2">
+                <FormLabel className="text-white text-sm font-medium">
+                  Email <span className="text-primary">*</span>
+                </FormLabel>
                 <FormControl>
                   <Input
                     type="email"
                     placeholder="john@example.com"
                     {...field}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-xs text-red-400" />
               </FormItem>
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Phone (Optional)</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="+1 (555) 000-0000"
-                    {...field}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="company"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Company (Optional)</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Your company"
-                    {...field}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="grid grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel className="text-white text-sm font-medium">
+                    Phone{" "}
+                    <span className="text-white/40 text-xs">(Optional)</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="+1 (555) 000-0000"
+                      {...field}
+                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs text-red-400" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="company"
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel className="text-white text-sm font-medium">
+                    Company{" "}
+                    <span className="text-white/40 text-xs">(Optional)</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Your company"
+                      {...field}
+                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs text-red-400" />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <FormField
             control={form.control}
             name="reason"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">
-                  Reason for Booking *
+              <FormItem className="space-y-2">
+                <FormLabel className="text-white text-sm font-medium">
+                  Reason for Booking <span className="text-primary">*</span>
                 </FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary">
                       <SelectValue placeholder="Select a reason" />
                     </SelectTrigger>
                   </FormControl>
@@ -199,14 +212,14 @@ const BookModal = ({ isOpen, onClose }: BookModalProps) => {
                       <SelectItem
                         key={reason}
                         value={reason}
-                        className="text-white focus:bg-white/10"
+                        className="text-white focus:bg-white/10 focus:text-white cursor-pointer py-2.5"
                       >
                         {reason}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                <FormMessage />
+                <FormMessage className="text-xs text-red-400" />
               </FormItem>
             )}
           />
@@ -215,28 +228,32 @@ const BookModal = ({ isOpen, onClose }: BookModalProps) => {
             control={form.control}
             name="message"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Message *</FormLabel>
+              <FormItem className="space-y-2">
+                <FormLabel className="text-white text-sm font-medium">
+                  Message <span className="text-primary">*</span>
+                </FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Tell us more about your booking request..."
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 min-h-[100px]"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 min-h-[120px] px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-xs text-red-400" />
               </FormItem>
             )}
           />
 
-          <Button
-            type="submit"
-            className="w-full bg-primary hover:bg-primary/90 text-white font-semibold"
-            disabled={isSubmitting}
-          >
-            <Calendar className="mr-2 h-4 w-4" />
-            {isSubmitting ? "Submitting..." : "Submit Booking Request"}
-          </Button>
+          <div className="pt-2">
+            <Button
+              type="submit"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-semibold h-12 text-base"
+              disabled={isSubmitting}
+            >
+              <Calendar className="mr-2 h-5 w-5" />
+              {isSubmitting ? "Submitting..." : "Submit Booking Request"}
+            </Button>
+          </div>
         </form>
       </Form>
     </ModalContainer>

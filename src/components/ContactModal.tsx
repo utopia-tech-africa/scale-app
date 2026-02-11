@@ -51,7 +51,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     setIsSubmitting(true);
     // Handle form submission here
     console.log("Contact data:", data);
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsSubmitting(false);
     onClose();
     form.reset();
@@ -60,22 +60,24 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose} title="Contact ScaleApp">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="firstName"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-white">First Name *</FormLabel>
+                <FormItem className="space-y-2">
+                  <FormLabel className="text-white text-sm font-medium">
+                    First Name <span className="text-primary">*</span>
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="John"
                       {...field}
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-xs text-red-400" />
                 </FormItem>
               )}
             />
@@ -83,16 +85,18 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
               control={form.control}
               name="lastName"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-white">Last Name *</FormLabel>
+                <FormItem className="space-y-2">
+                  <FormLabel className="text-white text-sm font-medium">
+                    Last Name <span className="text-primary">*</span>
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Doe"
                       {...field}
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-xs text-red-400" />
                 </FormItem>
               )}
             />
@@ -102,17 +106,19 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Email *</FormLabel>
+              <FormItem className="space-y-2">
+                <FormLabel className="text-white text-sm font-medium">
+                  Email <span className="text-primary">*</span>
+                </FormLabel>
                 <FormControl>
                   <Input
                     type="email"
                     placeholder="john@example.com"
                     {...field}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-xs text-red-400" />
               </FormItem>
             )}
           />
@@ -121,16 +127,19 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
             control={form.control}
             name="phone"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Phone (Optional)</FormLabel>
+              <FormItem className="space-y-2">
+                <FormLabel className="text-white text-sm font-medium">
+                  Phone{" "}
+                  <span className="text-white/40 text-xs">(Optional)</span>
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="+1 (555) 000-0000"
                     {...field}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-xs text-red-400" />
               </FormItem>
             )}
           />
@@ -139,28 +148,32 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
             control={form.control}
             name="message"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Message *</FormLabel>
+              <FormItem className="space-y-2">
+                <FormLabel className="text-white text-sm font-medium">
+                  Message <span className="text-primary">*</span>
+                </FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="How can we help you?"
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 min-h-[120px]"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 min-h-[140px] px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-xs text-red-400" />
               </FormItem>
             )}
           />
 
-          <Button
-            type="submit"
-            className="w-full bg-primary hover:bg-primary/90 text-white font-semibold"
-            disabled={isSubmitting}
-          >
-            <Send className="mr-2 h-4 w-4" />
-            {isSubmitting ? "Sending..." : "Send Message"}
-          </Button>
+          <div className="pt-2">
+            <Button
+              type="submit"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-semibold h-12 text-base"
+              disabled={isSubmitting}
+            >
+              <Send className="mr-2 h-5 w-5" />
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </Button>
+          </div>
         </form>
       </Form>
     </ModalContainer>
