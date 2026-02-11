@@ -8,6 +8,8 @@ import BlogResources from "@/components/BlogResources";
 import AboutScaleApp from "@/components/AboutScaleApp";
 import CommunityContact from "@/components/CommunityContact";
 import Footer from "@/components/Footer";
+import PartnersBanner from "@/components/PartnersBanner";
+import Founder from "@/components/Founder";
 
 const Index = () => {
   return (
@@ -15,9 +17,11 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
+        <PartnersBanner />
         <AboutScaleApp />
         <CorePillars />
         <FeaturedPrograms />
+        <Founder />
         <EventsSummits />
         {/* <Podcast /> */}
         <BlogResources />

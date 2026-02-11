@@ -1,57 +1,53 @@
 "use client";
-import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
+
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ArrowRight, BookOpen } from "lucide-react";
+import { useState, useEffect } from "react";
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
-  },
-};
+const phrases = ["Learn. Grow. Lead.", "Build  Your  Future  with  ScaleApp"];
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
+// Variants for typing each letter
+const typingVariants: Variants = {
+  hidden: { opacity: 0, y: 0 },
+  visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-  },
+    transition: { delay: i * 0.05, ease: "easeOut" },
+  }),
 };
 
 const Hero = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Cycle through phrases every 4 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % phrases.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
-      {/* Hero Background Image with Gradient Overlay */}
+      {/* Background */}
       <div className="absolute inset-0">
         <img
           src="/images/hero.jpg"
           alt="Hero background"
-          className="object-cover"
-          sizes="100vw"
-          style={{
-            objectPosition: "center center",
-          }}
+          className="w-full h-full object-cover"
         />
-        {/* Gradient Overlay for better text contrast */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-transparent" />
       </div>
 
-      <motion.div
-        className="container mx-auto max-w-5xl text-center relative z-10 px-4 sm:px-6"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      {/* Content */}
+      <div className="container mx-auto max-w-5xl text-center relative z-10 px-4 sm:px-6">
+        {/* Top Badge */}
         <motion.div
           className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full mb-8"
-          variants={itemVariants}
-          whileHover={{ scale: 1.05 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
         >
           <BookOpen className="w-4 h-4 text-primary" />
           <span className="text-primary text-sm font-semibold">
@@ -59,30 +55,50 @@ const Hero = () => {
           </span>
         </motion.div>
 
-        <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
-          variants={itemVariants}
-        >
-          Learn. Grow. Lead.
-          <br />
-          <span className="text-primary drop-shadow-lg">
-            Build Your Future
-          </span>{" "}
-          with ScaleApp
+        {/* Typing Hero Text */}
+        <motion.h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 text-nowrap leading-tight">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              className="inline-block"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {phrases[currentIndex].split("").map((char, i) => (
+                <motion.span
+                  key={i}
+                  custom={i}
+                  variants={typingVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </motion.h1>
 
-        {/* <motion.p
-          className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
-          variants={itemVariants}
+        {/* Subtext */}
+        <motion.p
+          className="text-lg sm:text-xl text-gray-200 mb-12 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0, transition: { delay: 0.5 } }}
         >
-          ScaleApp is a youth‑focused education and growth platform designed to
-          train, educate, coach, and connect the next generation through digital
-          learning, summits, podcasts, and live training experiences.
-        </motion.p> */}
+          Empowering youth with the{" "}
+          <span className="text-primary font-bold">
+            skills, knowledge, and opportunities
+          </span>{" "}
+          they need to thrive in the digital age.
+        </motion.p>
 
+        {/* Buttons */}
         <motion.div
           className="flex flex-wrap justify-center gap-4 mb-12"
-          variants={itemVariants}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0, transition: { delay: 0.7 } }}
         >
           <motion.a
             href="#programs"
@@ -110,18 +126,7 @@ const Hero = () => {
             Explore Programs
           </motion.a>
         </motion.div>
-
-        {/* <motion.div
-          className="text-white/80 text-sm backdrop-blur-sm bg-black/20 rounded-lg p-4 max-w-md mx-auto"
-          variants={itemVariants}
-        >
-          <p>
-            Trusted by{" "}
-            <span className="font-semibold text-white">10,000+ learners</span>,
-            educators, and partners shaping the future of education and skills.
-          </p>
-        </motion.div> */}
-      </motion.div>
+      </div>
     </section>
   );
 };
