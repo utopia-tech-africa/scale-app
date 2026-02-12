@@ -18,10 +18,10 @@ const Index = () => {
       <main>
         <Hero />
         <PartnersBanner />
+        <Founder />
         <AboutScaleApp />
         <CorePillars />
         <FeaturedPrograms />
-        <Founder />
         <Events />
         {/* <Podcast /> */}
         <BlogResources />
