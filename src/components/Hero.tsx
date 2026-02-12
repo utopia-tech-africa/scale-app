@@ -57,23 +57,40 @@ const Hero = () => {
         </motion.div>
 
         {/* Typing Hero Text */}
-        <motion.h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 leading-tight min-h-[3.5rem] sm:min-h-[4rem] md:min-h-[5.5rem]">
+        <motion.h1
+          className="relative text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 leading-tight
+                     h-[4.5rem] sm:h-[5.5rem] md:h-[7rem]"
+        >
           <AnimatePresence mode="wait">
             <motion.span
               key={currentIndex}
-              className="block w-full"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.6 }}
+              className="absolute inset-0 flex flex-wrap items-center justify-center text-center px-2"
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0 }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.4,
+                  },
+                },
+              }}
             >
               {phrases[currentIndex].split(" ").map((word, i) => (
                 <motion.span
                   key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.3 }}
-                  className="inline-block mr-2"
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.7 }}
+                  className={`inline-block mr-3
+            ${
+              phrases[currentIndex] === "Learn. Grow. Lead"
+                ? "whitespace-nowrap"
+                : "sm:whitespace-nowrap wrap-break-word"
+            }`}
                 >
                   {word}
                 </motion.span>
