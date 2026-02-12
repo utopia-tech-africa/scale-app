@@ -1,12 +1,13 @@
 import { Linkedin, Twitter, Instagram } from "lucide-react";
 
 export const footerLinks = [
-  { label: "Programs", href: "#pillars" },
   { label: "About", href: "#about" },
-  { label: "Courses", href: "#programs" },
+  { label: "Founder", href: "#founder" },
+  { label: "Programs", href: "#programs" },
+  { label: "Courses", href: "#courses" },
   { label: "Events", href: "#events" },
   //   { label: "Podcast", href: "#podcast" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "#founder" },
 ];
 
 export const socials = [
