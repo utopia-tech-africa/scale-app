@@ -1,13 +1,12 @@
 "use client";
-import { programs } from "@/constants/programs";
+import { courses } from "@/constants/courses";
 import { containerVariants, itemVariants } from "@/constants/variants";
 import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const FeaturedPrograms = () => {
+const Courses = () => {
   return (
-    <section id="programs" className="py-24 px-1 relative">
+    <section id="courses" className="py-24 px-1 relative">
       <div className="absolute inset-0 pattern-diagonal pointer-events-none" />
 
       <motion.div
@@ -32,46 +31,46 @@ const FeaturedPrograms = () => {
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
           variants={containerVariants}
         >
-          {programs.map((program) => (
+          {courses.map((course) => (
             <motion.div
-              key={program.title}
+              key={course.title}
               className="group relative bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 h-full"
               variants={itemVariants}
               whileHover={{ y: -5 }}
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${program.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                className={`absolute inset-0 bg-linear-to-br ${course.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
               />
 
               {/* Different layout for mobile vs desktop */}
               <div className="h-full">
                 {/* MOBILE: Stacked layout */}
                 <div className="md:hidden flex flex-col h-full">
-                  <div className="relative h-48 w-full flex-shrink-0">
+                  <div className="relative h-48 w-full shrink-0">
                     <img
-                      src={program.image}
-                      alt={program.title}
+                      src={course.image}
+                      alt={course.title}
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="100vw"
                     />
                   </div>
-                  <div className="relative z-10 p-6 flex-grow">
-                    <CardContent program={program} />
+                  <div className="relative z-10 p-6 grow">
+                    <CardContent course={course} />
                   </div>
                 </div>
 
                 {/* DESKTOP: Side-by-side layout */}
                 <div className="hidden md:flex h-full">
-                  <div className="relative w-2/5 flex-shrink-0">
+                  <div className="relative w-2/5 shrink-0">
                     <img
-                      src={program.image}
-                      alt={program.title}
+                      src={course.image}
+                      alt={course.title}
                       className="object-cover h-full w-full  transition-transform duration-500 group-hover:scale-105"
                       sizes="40vw"
                     />
                   </div>
                   <div className="relative z-10 p-6 w-3/5">
-                    <CardContent program={program} />
+                    <CardContent course={course} />
                   </div>
                 </div>
               </div>
@@ -84,29 +83,29 @@ const FeaturedPrograms = () => {
 };
 
 // Separate component for card content to avoid duplication
-const CardContent = ({ program }: { program }) => (
+const CardContent = ({ course }: { course }) => (
   <>
     <div className="flex items-center gap-3 mb-4">
       <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-        <program.icon className="w-5 h-5 text-primary" />
+        <course.icon className="w-5 h-5 text-primary" />
       </div>
       <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">
-        {program.category}
+        {course.category}
       </span>
     </div>
     <h3 className="text-xl font-semibold text-foreground mb-2">
-      {program.title}
+      {course.title}
     </h3>
-    <p className="text-muted-foreground mb-4">{program.description}</p>
+    <p className="text-muted-foreground mb-4">{course.description}</p>
     <motion.a
       href="#"
       className="inline-flex items-center gap-2 text-primary font-medium text-sm hover:gap-3 transition-all"
       whileHover={{ x: 5 }}
     >
-      {program.cta}
+      {course.cta}
       <ArrowRight className="w-4 h-4" />
     </motion.a>
   </>
 );
 
-export default FeaturedPrograms;
+export default Courses;

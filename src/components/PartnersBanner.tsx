@@ -11,7 +11,7 @@ const bannerItems = [
 
 const PartnersBanner = () => {
   return (
-    <div className="w-full max-w-full bg-white py-4 md:py-6 overflow-hidden">
+    <div className="w-full max-w-full bg-[#0f0f0f] py-4 md:py-6 overflow-hidden">
       <InfiniteSlider gap={24} className="w-full">
         {bannerItems.map((item, index) => (
           <div

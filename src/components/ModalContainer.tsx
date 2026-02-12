@@ -19,23 +19,18 @@ const ModalContainer = ({
 }: ModalContainerProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent
-        className="
-          sm:max-w-[500px]
-          no-scrollbar
-          w-full
-          overflow-y-auto
-          max-h-[85vh]
-          p-0
-          bg-gray-900
-          border border-white/10
-          gap-0
-          overflow-hidden
-          [&>button]:hidden
-        "
-      >
+      <DialogContent className="sm:max-w-125 w-full p-0 bg-gray-900 border border-white/10 gap-0 [&>button]:hidden [&>button]:cursor-pointer">
+        <style>{`
+          .no-scrollbar {
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+          }
+          .no-scrollbar::-webkit-scrollbar {
+            display: none !important;
+          }
+        `}</style>
         <div className="flex flex-col max-h-[85vh]">
-          {/* Header (fixed) */}
+          {/* Header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-white/10 shrink-0">
             <h2 className="text-xl font-semibold text-white">{title}</h2>
             <button
@@ -46,7 +41,7 @@ const ModalContainer = ({
             </button>
           </div>
 
-          {/* Scrollable Content */}
+          {/* Scrollable content */}
           <AnimatePresence mode="wait">
             <motion.div
               initial={{ opacity: 0, y: 10 }}

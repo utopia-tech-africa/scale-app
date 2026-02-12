@@ -7,7 +7,7 @@ const EventsSummits = () => {
   return (
     <section
       id="events"
-      className="py-24 px-1 relative overflow-hidden bg-secondary/30"
+      className="py-18 border border-white px-1 relative overflow-hidden bg-secondary/30"
     >
       <div className="absolute inset-0 pattern-gradient-radial pointer-events-none" />
 
@@ -31,7 +31,7 @@ const EventsSummits = () => {
 
         <motion.div className="max-w-3xl mx-auto" variants={itemVariants}>
           <motion.div
-            className="relative p-8 bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/30 rounded-2xl overflow-hidden"
+            className="relative p-8 bg-linear-to-br from-primary/10 to-primary/5 border border-primary/30 rounded-2xl overflow-hidden"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >

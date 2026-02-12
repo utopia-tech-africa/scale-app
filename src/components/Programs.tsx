@@ -1,12 +1,12 @@
 "use client";
-import { pillars } from "@/constants/pillars";
+import { programs } from "@/constants/programs";
 import { containerVariants, itemVariants } from "@/constants/variants";
 import { motion } from "framer-motion";
 
-const CorePillars = () => {
+const Programs = () => {
   return (
-    <section id="pillars" className="py-24 px-1 relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+    <section id="programs" className="py-24 px-1 relative">
+      <div className="absolute inset-0 bg-linear-to-br from-gray-900 via-black to-gray-900" />
       <motion.div
         className="container mx-auto max-w-6xl relative z-10"
         initial="hidden"
@@ -28,10 +28,10 @@ const CorePillars = () => {
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
         >
-          {pillars.map((pillar) => (
+          {programs.map((program) => (
             <motion.div
-              key={pillar.title}
-              className="group relative p-6 border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 h-full min-h-[340px]"
+              key={program.title}
+              className="group relative p-6 border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 h-full min-h-85"
               variants={itemVariants}
               whileHover={{
                 y: -8,
@@ -42,38 +42,36 @@ const CorePillars = () => {
             >
               <div className="absolute inset-0">
                 <img
-                  src={pillar.image}
-                  alt={pillar.title}
+                  src={program.image}
+                  alt={program.title}
                   className="object-cover transition-all duration-700 group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 to-black/60" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/80 to-black/60" />
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
               </div>
 
               <div className="relative z-10 h-full flex flex-col">
                 <div className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 border border-white/20">
-                  <pillar.icon className="w-7 h-7 text-white" />
+                  <program.icon className="w-7 h-7 text-white" />
                 </div>
 
-                <div className="flex-grow">
+                <div className="grow">
                   <h3 className="text-2xl font-bold text-white mb-2">
-                    {pillar.title}
+                    {program.title}
                   </h3>
                   <p className="text-primary font-semibold text-sm mb-6">
-                    {pillar.subtitle}
+                    {program.subtitle}
                   </p>
                   <ul className="space-y-3">
-                    {pillar.features.map((feature) => (
+                    {program.features.map((feature) => (
                       <motion.li
                         key={feature}
                         className="flex items-start gap-3 text-white/90 text-sm"
                         whileHover={{ x: 5 }}
                         transition={{ type: "spring", stiffness: 400 }}
                       >
-                        <span className="text-primary mt-1 flex-shrink-0">
-                          ▶
-                        </span>
+                        <span className="text-primary mt-1 shrink-0">▶</span>
                         <span className="leading-relaxed">{feature}</span>
                       </motion.li>
                     ))}
@@ -88,4 +86,4 @@ const CorePillars = () => {
   );
 };
 
-export default CorePillars;
+export default Programs;

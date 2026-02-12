@@ -27,7 +27,8 @@ const AboutScaleApp = () => {
               className="text-3xl md:text-4xl font-bold text-foreground mb-6"
               variants={itemVariants}
             >
-              Why ScaleApp Exists
+              The Vision Behind <br />
+              <span className="text-primary">ScaleApp</span>
             </motion.h2>
             <motion.p
               className="text-muted-foreground text-lg leading-relaxed mb-6"

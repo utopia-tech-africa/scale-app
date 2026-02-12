@@ -49,7 +49,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    // Handle form submission here
+    // Handle form submission
     console.log("Contact data:", data);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsSubmitting(false);
@@ -155,7 +155,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                 <FormControl>
                   <Textarea
                     placeholder="How can we help you?"
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 min-h-[140px] px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 min-h-35 px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary"
                     {...field}
                   />
                 </FormControl>
@@ -167,7 +167,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
           <div className="pt-2">
             <Button
               type="submit"
-              className="w-full bg-primary hover:bg-primary/90 text-white font-semibold h-12 text-base"
+              className="w-full bg-primary hover:bg-primary/90 text-black font-semibold h-12 text-base"
               disabled={isSubmitting}
             >
               <Send className="mr-2 h-5 w-5" />

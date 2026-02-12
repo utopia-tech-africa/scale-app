@@ -1,44 +1,81 @@
-import { BookOpen, Calendar, Laptop, Users } from "lucide-react";
+import {
+  GraduationCap,
+  BookOpen,
+  Monitor,
+  Users,
+  Library,
+  Award,
+} from "lucide-react";
 
 export const programs = [
   {
-    icon: Users,
-    category: "Coaching",
-    title: "Youth Leadership Program",
-    description:
-      "A guided leadership and personal growth program for young professionals and founders.",
-    cta: "Join Program",
-    color: "from-purple-500/20 to-pink-500/20",
-    image: "/images/coaching.jpg",
-  },
-  {
-    icon: Calendar,
-    category: "Events & Summits",
-    title: "Online Learning Summit",
-    description:
-      "A virtual summit bringing together educators, creators, and industry leaders.",
-    cta: "Register",
-    color: "from-orange-500/20 to-red-500/20",
+    icon: GraduationCap,
+    title: "Education",
+    subtitle: "Build Strong Foundations",
     image: "/images/education.jpg",
+    features: [
+      "Foundational learning",
+      "Skill development",
+      "Thought leadership",
+      "Articles, guides, and insights",
+    ],
   },
   {
     icon: BookOpen,
-    category: "Online Courses",
-    title: "Learning Fundamentals Course",
-    description:
-      "A self‑paced course covering essential learning, productivity, and growth skills.",
-    cta: "View Course",
-    color: "from-green-500/20 to-teal-500/20",
-    image: "/images/digital.jpg",
+    title: "Online Courses",
+    subtitle: "Learn at Your Own Pace",
+    image: "/images/learning.jpg",
+    features: [
+      "Structured digital courses",
+      "Self‑paced and cohort‑based learning",
+      "Industry‑relevant curriculum",
+      "Certificates (coming soon)",
+    ],
   },
   {
-    icon: Laptop,
-    category: "Training Center",
-    title: "Digital Skills Bootcamp",
-    description:
-      "An intensive hands‑on bootcamp designed to equip learners with practical, job‑ready digital skills.",
-    cta: "Learn More",
-    color: "from-cyan-500/20 to-blue-500/20",
-    image: "/images/events.jpg",
+    icon: Monitor,
+    title: "Online Education",
+    subtitle: "Learn From Anywhere",
+    image: "/images/train.jpg",
+
+    features: [
+      "Virtual workshops",
+      "Webinars",
+      "Live and on‑demand learning",
+      "Remote education experiences",
+    ],
+  },
+  {
+    icon: Users,
+    title: "Coaching",
+    subtitle: "Learn With Guidance",
+    image: "/images/group.jpg",
+
+    features: [
+      "Personal and group coaching",
+      "Mentorship programs",
+      "Leadership and growth coaching",
+    ],
+  },
+  {
+    icon: Library,
+    title: "Learning Hub",
+    subtitle: "Keep Growing Continuously",
+    image: "/images/meeting.jpg",
+
+    features: ["Curated resources", "Toolkits and guides", "Knowledge library"],
+  },
+  {
+    icon: Award,
+    title: "Training Center",
+    subtitle: "Train for the Real World",
+    image: "/images/leadership.jpg",
+
+    features: [
+      "Physical and virtual training programs",
+      "Bootcamps",
+      "Certifications",
+      "Corporate and institutional training",
+    ],
   },
 ];

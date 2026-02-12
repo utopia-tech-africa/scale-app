@@ -235,7 +235,7 @@ const BookModal = ({ isOpen, onClose }: BookModalProps) => {
                 <FormControl>
                   <Textarea
                     placeholder="Tell us more about your booking request..."
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 min-h-[120px] px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 min-h-30 px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary"
                     {...field}
                   />
                 </FormControl>
@@ -247,7 +247,7 @@ const BookModal = ({ isOpen, onClose }: BookModalProps) => {
           <div className="pt-2">
             <Button
               type="submit"
-              className="w-full bg-primary hover:bg-primary/90 text-white font-semibold h-12 text-base"
+              className="w-full bg-primary hover:bg-primary/90 text-black font-semibold h-12 text-base"
               disabled={isSubmitting}
             >
               <Calendar className="mr-2 h-5 w-5" />
