@@ -113,7 +113,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                 <FormControl>
                   <Input
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder="you@example.com"
                     {...field}
                     className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
                   />
@@ -130,11 +130,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
               <FormItem className="space-y-2">
                 <FormLabel className="text-white text-sm font-medium">
                   Phone{" "}
-                  <span className="text-white/40 text-xs">(Optional)</span>
                 </FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="+233000000000"
                     {...field}
                     className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
                   />

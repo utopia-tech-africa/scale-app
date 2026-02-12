@@ -38,24 +38,14 @@ const Founder = () => {
                 <div className="relative group">
                   <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-gray-900">
                     <img
-                      src="/images/ghizo.png"
+                      src="/images/ghizo.jpg"
                       alt="Ghizo - Founder & CEO"
                       className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                   </div>
-
-                  {/* Floating Quote Badge */}
-                  {/* <div className="absolute -bottom-4 -right-4 bg-primary p-4 rounded-xl shadow-xl max-w-[240px] hidden md:block">
-                  <Quote className="h-5 w-5 text-black mb-2" />
-                  <p className="text-black text-xs font-bold leading-tight">
-                    "Empowering youth isn't just about teaching skills—it's
-                    about unlocking potential."
-                  </p>
-                </div> */}
                 </div>
 
-                {/* Pillars Grid - Re-styled for better fit */}
                 <div className="grid grid-cols-3 gap-3">
                   {[
                     { icon: Sparkles, label: "Afro Catalyst" },
@@ -75,7 +65,6 @@ const Founder = () => {
                 </div>
               </motion.div>
 
-              {/* Right Column: Full Narrative (7 Cols) */}
               <motion.div
                 variants={itemVariants}
                 className="lg:col-span-7 space-y-8"
