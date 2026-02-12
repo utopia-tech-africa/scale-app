@@ -49,12 +49,12 @@ const Navigation = () => {
           ))}
           <li>
             <motion.a
-              href="#contact"
-              className="px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-all"
+              href="#founder"
+              className="px-5 py-2 text-sm font-semibold bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-all"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              Start Learning
+              Contact Us
             </motion.a>
           </li>
         </ul>
@@ -87,7 +87,7 @@ const Navigation = () => {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-base font-medium text-muted-foreground hover:text-primary transition-colors"
+                      className="text-base font-semibold text-muted-foreground hover:text-primary transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {link.label}
@@ -96,7 +96,7 @@ const Navigation = () => {
                 ))}
                 <li>
                   <a
-                    href="#contact"
+                    href="#programs"
                     className="px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-all"
                     onClick={() => setMobileMenuOpen(false)}
                   >
