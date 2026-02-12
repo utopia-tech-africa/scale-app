@@ -7,7 +7,7 @@ import ComponentLayout from "./ComponentLayout";
 const Footer = () => {
   return (
     <ComponentLayout className="pb-0">
-      <footer className="py-6 border-t border-border">
+      <footer className="border-t border-border">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
             <a

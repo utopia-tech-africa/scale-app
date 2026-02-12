@@ -114,25 +114,25 @@ const Hero = () => {
 
         {/* Buttons - FIXED RESPONSIVENESS */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 pt-6 w-full max-w-2xl mx-auto"
+          className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6 w-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.7 } }}
         >
-          <a href="#about" className="w-full sm:w-auto">
+          <a href="#about" className="w-full sm:w-auto flex justify-center">
             <Button
               size="lg"
-              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-black font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105"
+              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-black font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105 flex justify-center items-center"
             >
               <ArrowRight className="mr-2 h-5 w-5 shrink-0" />
               Learn More
             </Button>
           </a>
 
-          <a href="#programs" className="w-full sm:w-auto">
+          <a href="#programs" className="w-full sm:w-auto flex justify-center">
             <Button
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto border-white/20 text-white font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105"
+              className="w-full sm:w-auto border-white/20 text-white font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105 flex justify-center items-center"
             >
               <Compass className="mr-2 h-5 w-5 shrink-0" />
               Explore Programs
