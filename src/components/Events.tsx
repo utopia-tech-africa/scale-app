@@ -39,8 +39,8 @@ const Events = () => {
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
-              <div className="relative z-10">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="relative z-10 ">
+                <div className="flex items-center gap-2 mb-4 ">
                   <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-mono rounded-full">
                     Featured Event
                   </span>
@@ -67,19 +67,15 @@ const Events = () => {
                     <span className="text-sm">Interactive sessions</span>
                   </div>
                 </div>
-
-                <motion.a
-                  href="#"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:opacity-90 transition-all"
-                  whileHover={{
-                    y: -2,
-                    boxShadow: "0 10px 40px hsl(187 85% 53% / 0.3)",
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Save Your Spot
-                  <ArrowRight className="w-4 h-4" />
-                </motion.a>
+                <div className="flex items-center">
+                  <motion.a
+                    href="#"
+                    className="inline-flex items-center bg-primary hover:bg-primary/90 text-black font-bold gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:opacity-90 transition-all"
+                  >
+                    Save Your Spot
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.a>
+                </div>
               </div>
             </motion.div>
           </motion.div>

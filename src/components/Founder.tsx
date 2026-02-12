@@ -117,7 +117,7 @@ const Founder = () => {
                 <div className="flex flex-col sm:flex-row gap-4 pt-6 w-full">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-black font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105"
+                    className="w-full cursor-pointer sm:w-auto bg-primary hover:bg-primary/90 text-black font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105"
                     onClick={() => setIsBookModalOpen(true)}
                   >
                     <Calendar className="mr-2 h-5 w-5 shrink-0" />
@@ -126,7 +126,7 @@ const Founder = () => {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="w-full sm:w-auto border-white/20 text-white font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105"
+                    className="w-full cursor-pointer sm:w-auto border-white/20 bg-transparent hover:bg-transparent hover:text-white text-white font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105"
                     onClick={() => setIsContactModalOpen(true)}
                   >
                     <Mail className="mr-2 h-5 w-5 shrink-0" />

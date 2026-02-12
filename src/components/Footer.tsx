@@ -6,8 +6,8 @@ import ComponentLayout from "./ComponentLayout";
 
 const Footer = () => {
   return (
-    <ComponentLayout className="pb-0">
-      <footer className="border-t border-border">
+    <ComponentLayout className="py-0 border border-border rounded-t-4xl">
+      <footer>
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
             <a
@@ -49,7 +49,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="text-center pt-8 border-t border-border">
+          <div className="text-center pb-4">
             <p className="text-muted-foreground text-sm">
               © {new Date().getFullYear()} ScaleApp. Building the future of
               learning, growth, and opportunity.

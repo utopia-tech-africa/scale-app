@@ -121,7 +121,7 @@ const Hero = () => {
           <a href="#about" className="w-full sm:w-auto flex justify-center">
             <Button
               size="lg"
-              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-black font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105 flex justify-center items-center"
+              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-black font-bold h-14 px-6 sm:px-10 rounded-lg cursor-pointer transition-transform duration-300 hover:scale-105 flex justify-center items-center"
             >
               <ArrowRight className="mr-2 h-5 w-5 shrink-0" />
               Learn More
@@ -132,7 +132,7 @@ const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto border-white/20 text-white font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105 flex justify-center items-center"
+              className="w-full cursor-pointer sm:w-auto border-white/20 bg-transparent hover:bg-transparent hover:text-white text-white font-bold h-14 px-6 sm:px-10 rounded-lg transition-transform duration-300 hover:scale-105 flex justify-center items-center"
             >
               <Compass className="mr-2 h-5 w-5 shrink-0" />
               Explore Programs
