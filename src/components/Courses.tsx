@@ -2,10 +2,16 @@
 import { courses } from "@/constants/courses";
 import { containerVariants, itemVariants } from "@/constants/variants";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import ComponentLayout from "./ComponentLayout";
+import { useState } from "react";
+import CourseRegistrationModal from "./CourseRegistrationModal";
+import ContactModal from "./ContactModal";
 
 const Courses = () => {
+  const [isCourseRegistrationModalOpen, setIsCourseRegistrationModalOpen] =
+    useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <ComponentLayout>
       <section id="courses" className="relative py-6">
@@ -80,7 +86,23 @@ const Courses = () => {
             ))}
           </motion.div>
         </motion.div>
+        <div className="flex justify-center mt-12">
+          <button
+            onClick={() => setIsCourseRegistrationModalOpen(true)}
+            className="inline-flex items-center cursor-pointer gap-2 px-8 py-3 bg-primary hover:bg-primary/90 text-black font-bold rounded-lg transition-all duration-300 hover:scale-105"
+          >
+            Register for a Course
+          </button>
+        </div>
       </section>
+      <CourseRegistrationModal
+        isOpen={isCourseRegistrationModalOpen}
+        onClose={() => setIsCourseRegistrationModalOpen(false)}
+      />
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </ComponentLayout>
   );
 };
@@ -100,14 +122,6 @@ const CardContent = ({ course }: { course }) => (
       {course.title}
     </h3>
     <p className="text-muted-foreground mb-4">{course.description}</p>
-    <motion.a
-      href="#"
-      className="inline-flex items-center gap-2 text-primary font-medium text-sm hover:gap-3 transition-all"
-      whileHover={{ x: 5 }}
-    >
-      {course.cta}
-      <ArrowRight className="w-4 h-4" />
-    </motion.a>
   </>
 );
 

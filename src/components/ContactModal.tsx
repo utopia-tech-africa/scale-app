@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { toast } from "sonner";
 import ModalContainer from "./ModalContainer";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,11 +20,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
 
 const formSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address").min(1, "Email is required"),
+  firstName: z.string().min(1),
+  lastName: z.string().min(1),
+  email: z.string().email(),
   phone: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  message: z.string().min(10),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -34,7 +35,10 @@ interface ContactModalProps {
 }
 
 const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -49,132 +53,133 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    // Handle form submission
-    console.log("Contact data:", data);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    onClose();
-    form.reset();
+    const toastId = toast.loading("Sending message...");
+
+    try {
+      const response = await fetch(`${BASE_URL}api/forms/contact-scale-app`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.message || "Failed to send message");
+      }
+
+      toast.success("Message sent successfully!", { id: toastId });
+      form.reset();
+      setShowSuccess(true);
+
+      setTimeout(() => {
+        setShowSuccess(false);
+        setIsSubmitting(false);
+        onClose();
+      }, 3000);
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : "Failed to send message",
+        { id: toastId },
+      );
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose} title="Contact ScaleApp">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          <div className="grid grid-cols-2 gap-4">
+      {showSuccess ? (
+        <div className="p-6 text-center text-white text-lg">
+          Message sent successfully!
+        </div>
+      ) : (
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>First Name *</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="John" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Last Name *</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="Doe" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
             <FormField
               control={form.control}
-              name="firstName"
+              name="email"
               render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className="text-white text-sm font-medium">
-                    First Name <span className="text-primary">*</span>
-                  </FormLabel>
+                <FormItem>
+                  <FormLabel>Email *</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="John"
+                      type="email"
                       {...field}
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
+                      placeholder="you@example.com"
                     />
                   </FormControl>
-                  <FormMessage className="text-xs text-red-400" />
+                  <FormMessage />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
-              name="lastName"
+              name="phone"
               render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className="text-white text-sm font-medium">
-                    Last Name <span className="text-primary">*</span>
-                  </FormLabel>
+                <FormItem>
+                  <FormLabel>Phone</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Doe"
-                      {...field}
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
-                    />
+                    <Input {...field} placeholder="+2330000000" />
                   </FormControl>
-                  <FormMessage className="text-xs text-red-400" />
+                  <FormMessage />
                 </FormItem>
               )}
             />
-          </div>
 
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="space-y-2">
-                <FormLabel className="text-white text-sm font-medium">
-                  Email <span className="text-primary">*</span>
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="you@example.com"
-                    {...field}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
-                  />
-                </FormControl>
-                <FormMessage className="text-xs text-red-400" />
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Message *</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} placeholder="Your message..." />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem className="space-y-2">
-                <FormLabel className="text-white text-sm font-medium">
-                  Phone{" "}
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="+233000000000"
-                    {...field}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-11 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
-                  />
-                </FormControl>
-                <FormMessage className="text-xs text-red-400" />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem className="space-y-2">
-                <FormLabel className="text-white text-sm font-medium">
-                  Message <span className="text-primary">*</span>
-                </FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="How can we help you?"
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 min-h-35 px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage className="text-xs text-red-400" />
-              </FormItem>
-            )}
-          />
-
-          <div className="pt-2">
             <Button
+              className="cursor-pointer"
               type="submit"
-              className="w-full bg-primary hover:bg-primary/90 text-black font-semibold h-12 text-base"
               disabled={isSubmitting}
             >
               <Send className="mr-2 h-5 w-5" />
               {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
-          </div>
-        </form>
-      </Form>
+          </form>
+        </Form>
+      )}
     </ModalContainer>
   );
 };
