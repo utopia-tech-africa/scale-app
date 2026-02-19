@@ -5,7 +5,7 @@ import { Mail, Send, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import ComponentLayout from "./ComponentLayout";
 
-const CommunityContact = () => {
+const NewsLetterSection = () => {
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -106,4 +106,4 @@ const CommunityContact = () => {
   );
 };
 
-export default CommunityContact;
+export default NewsLetterSection;

@@ -36,13 +36,13 @@ const Founder = () => {
                 className="lg:col-span-5 space-y-6"
               >
                 <div className="relative group">
-                  <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-gray-900">
+                  <div className="aspect-4/5 rounded-2xl overflow-hidden border border-white/10 bg-gray-900">
                     <img
                       src="/images/ghizo.jpg"
                       alt="Ghizo - Founder & CEO"
                       className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
                   </div>
                 </div>
 

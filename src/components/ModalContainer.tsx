@@ -30,7 +30,6 @@ const ModalContainer = ({
           }
         `}</style>
 
-        {/* Animating entire modal container */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -38,9 +37,9 @@ const ModalContainer = ({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 50, scale: 0.95 }}
               transition={{
-                duration: 1, // longer duration for smoothness
+                duration: 1,
                 ease: [0.25, 0.1, 0.25, 1],
-                delay: 0.2, // small delay before it starts
+                delay: 0.2,
               }}
               className="flex flex-col max-h-[85vh]"
             >

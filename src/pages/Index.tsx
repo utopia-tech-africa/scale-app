@@ -5,11 +5,11 @@ import FeaturedPrograms from "@/components/Courses";
 // import Podcast from "@/components/Podcast";
 import BlogResources from "@/components/BlogResources";
 import AboutScaleApp from "@/components/AboutScaleApp";
-import CommunityContact from "@/components/CommunityContact";
 import Footer from "@/components/Footer";
 import PartnersBanner from "@/components/PartnersBanner";
 import Founder from "@/components/Founder";
 import Events from "@/components/Events";
+import NewsLetterSection from "@/components/NewsLetter";
 
 const Index = () => {
   return (
@@ -25,7 +25,7 @@ const Index = () => {
         <Events />
         {/* <Podcast /> */}
         <BlogResources />
-        <CommunityContact />
+        <NewsLetterSection />
       </main>
       <Footer />
     </div>
