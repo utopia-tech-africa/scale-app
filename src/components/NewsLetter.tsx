@@ -72,7 +72,7 @@ const NewsLetterSection = () => {
                 />
                 <motion.button
                   type="submit"
-                  className="px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:opacity-90 transition-all flex items-center gap-2"
+                  className="px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:opacity-90 transition-all flex items-center gap-2 cursor-pointer"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >

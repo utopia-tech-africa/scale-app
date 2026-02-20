@@ -1,6 +1,10 @@
 @import "tailwindcss/preflight";
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
