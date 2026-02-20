@@ -23,13 +23,13 @@ const Navigation = () => {
           : "bg-transparent"
       }`}
     >
-      <nav className="container mx-auto px-6 py-2 flex items-center justify-between">
+      <nav className="container mx-auto px-6 py-1 flex items-center justify-between">
         <a
           href="#"
           className="text-xl font-bold text-foreground hover:text-primary transition-colors"
         >
           <img
-            className="w-16 h-16 object-cover"
+            className="w-20 h-20 object-cover"
             src="/images/scale-app-logo.png"
             alt=""
           />
