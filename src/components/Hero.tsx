@@ -1,11 +1,24 @@
 "use client";
 
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { ArrowRight, BookOpen, Compass } from "lucide-react";
-import { useState, useEffect } from "react";
+import {
+  ArrowRight,
+  BookOpen,
+  Compass,
+  Volume2,
+  VolumeX,
+  Play,
+} from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
 
 const phrases = ["Learn. Grow. Lead", "Build Your Future with ScaleApp"];
+
+const MOBILE_VIDEO_SRC =
+  "https://res.cloudinary.com/dan9camhs/video/upload/v1783627067/scale_app_video_mobile_xguvvj.mp4";
+const DESKTOP_VIDEO_SRC =
+  "https://res.cloudinary.com/dan9camhs/video/upload/v1783627082/scale_app_video_desktop_txt1oe.mp4";
+const YOUTUBE_URL = "https://www.youtube.com/watch?v=f_5ag2n6TZE";
 
 // Variants for typing each letter
 const typingVariants: Variants = {
@@ -19,6 +32,10 @@ const typingVariants: Variants = {
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
+  const [showWatchCta, setShowWatchCta] = useState(false);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
 
   // Cycle through phrases every 4 seconds
   useEffect(() => {
@@ -29,18 +46,110 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Show "Watch Full Video" CTA when the video is near the end
+  useEffect(() => {
+    const handleTimeUpdate = (e: Event) => {
+      const video = e.target as HTMLVideoElement;
+      if (video.duration && video.currentTime >= video.duration - 5) {
+        setShowWatchCta(true);
+      } else {
+        setShowWatchCta(false);
+      }
+    };
+
+    const mobileVid = mobileVideoRef.current;
+    const desktopVid = desktopVideoRef.current;
+
+    mobileVid?.addEventListener("timeupdate", handleTimeUpdate);
+    desktopVid?.addEventListener("timeupdate", handleTimeUpdate);
+
+    return () => {
+      mobileVid?.removeEventListener("timeupdate", handleTimeUpdate);
+      desktopVid?.removeEventListener("timeupdate", handleTimeUpdate);
+    };
+  }, []);
+
+  const toggleMute = () => {
+    const newMuted = !isMuted;
+    if (mobileVideoRef.current) mobileVideoRef.current.muted = newMuted;
+    if (desktopVideoRef.current) desktopVideoRef.current.muted = newMuted;
+    setIsMuted(newMuted);
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
-      {/* Background */}
+      {/* Video Background */}
       <div className="absolute inset-0">
-        <img
-          src="/images/hero.jpg"
-          alt="Hero background"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/50 to-transparent" />
-        <div className="absolute inset-0 bg-linear-to-b from-black/90 to-transparent" />
+        {/* Mobile video (shown below 768px) */}
+        <video
+          ref={mobileVideoRef}
+          className="w-full h-full object-cover block md:hidden"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          key="mobile-video"
+        >
+          <source src={MOBILE_VIDEO_SRC} type="video/mp4" />
+        </video>
+        {/* Desktop video (shown at 768px and above) */}
+        <video
+          ref={desktopVideoRef}
+          className="w-full h-full object-cover hidden md:block"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          key="desktop-video"
+        >
+          <source src={DESKTOP_VIDEO_SRC} type="video/mp4" />
+        </video>
+        {/* Gradient overlay for better text visibility */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/25 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/50 to-transparent" />
       </div>
+
+      {/* Top-right controls: Mute + Watch Full Video */}
+      <motion.div
+        className="absolute top-24 right-4 sm:right-6 z-20 flex flex-col items-end gap-3"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0, transition: { delay: 1, duration: 0.4 } }}
+      >
+        {/* Mute / Unmute */}
+        <button
+          onClick={toggleMute}
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/25 text-white hover:bg-white/25 transition-all duration-200 cursor-pointer text-sm font-medium shadow-lg"
+          aria-label={isMuted ? "Unmute video" : "Mute video"}
+        >
+          {isMuted ? (
+            <VolumeX className="w-4 h-4 shrink-0" />
+          ) : (
+            <Volume2 className="w-4 h-4 shrink-0" />
+          )}
+          {isMuted ? "Unmute" : "Mute"}
+        </button>
+
+        {/* Watch Full Video — appears near end of video */}
+        <AnimatePresence>
+          {showWatchCta && (
+            <motion.a
+              href={YOUTUBE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/40 backdrop-blur-md border border-red-400/20 text-white hover:bg-red-500 transition-colors duration-200 cursor-pointer text-sm font-semibold shadow-lg shadow-red-900/30"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Play className="w-4 h-4 shrink-0 fill-white" />
+              Watch Full Video
+            </motion.a>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
       {/* Content */}
       <div className="container mx-auto max-w-5xl text-center relative z-10 px-4 sm:px-6">
@@ -112,7 +221,7 @@ const Hero = () => {
           they need to thrive in the digital age.
         </motion.p>
 
-        {/* Buttons - FIXED RESPONSIVENESS */}
+        {/* Buttons */}
         <motion.div
           className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6 w-full"
           initial={{ opacity: 0, y: 20 }}
