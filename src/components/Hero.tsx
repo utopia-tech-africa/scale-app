@@ -3,7 +3,6 @@
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   ArrowRight,
-  BookOpen,
   Compass,
   Volume2,
   VolumeX,
@@ -77,7 +76,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+    <section className="min-h-screen flex items-end justify-center md:justify-start px-6 pt-20 pb-10 md:pb-16 relative overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0">
         {/* Mobile video (shown below 768px) */}
@@ -152,28 +151,16 @@ const Hero = () => {
       </motion.div>
 
       {/* Content */}
-      <div className="container mx-auto max-w-5xl text-center relative z-10 px-4 sm:px-6">
-        {/* Top Badge */}
-        <motion.div
-          className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
-        >
-          <BookOpen className="w-4 h-4 text-primary" />
-          <span className="text-primary text-sm font-semibold">
-            Youth-Focused Education Platform
-          </span>
-        </motion.div>
-
+      <div className="container mx-auto md:mx-0 max-w-5xl text-center md:text-left relative z-10 px-4 sm:px-6 md:px-8 lg:px-12">
         {/* Typing Hero Text */}
         <motion.h1
-          className="relative text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 leading-tight
+          className="relative text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 md:mb-10 leading-tight
                      h-[4.5rem] sm:h-[5.5rem] md:h-[7rem]"
         >
           <AnimatePresence mode="wait">
             <motion.span
               key={currentIndex}
-              className="absolute inset-0 flex flex-wrap items-center justify-center text-center px-2"
+              className="absolute inset-0 flex flex-wrap items-center justify-center md:justify-start text-center md:text-left px-2"
               initial="hidden"
               animate="visible"
               exit={{ opacity: 0 }}
@@ -210,20 +197,20 @@ const Hero = () => {
 
         {/* Subtext */}
         <motion.p
-          className="text-base sm:text-lg md:text-xl text-gray-200 mb-12 max-w-2xl mx-auto px-4"
+          className="text-base sm:text-lg md:text-xl text-gray-200 mb-8 md:mb-10 max-w-2xl mx-auto md:mx-0 px-4 md:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.5 } }}
         >
-          Empowering youth with the{" "}
+          Empowering people and businesses alike with the{" "}
           <span className="text-primary font-bold">
             skills, knowledge, and opportunities
           </span>{" "}
-          they need to thrive in the digital age.
+          to thrive in the digital age
         </motion.p>
 
         {/* Buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6 w-full"
+          className="flex flex-col sm:flex-row justify-center md:justify-start items-center md:items-start gap-4 w-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.7 } }}
         >
